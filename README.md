@@ -1,3 +1,4 @@
+
 # TP1 : Vagrant et Ansible
 
 Dans ce TP on va commencer à se f**amiliariser avec un environnement Vagrant + Ansible** qui nous permettra d'avoir un environnement dans lequel travailler par la suite.
@@ -354,58 +355,57 @@ $ ansible-playbook -i hosts.ini first.yml
 
 ➜ **Vérifiez en vous connectant à la base que votre conf a pris effet**
 
-`
-[ansible_user@vm2 ~]$ mysql -u root -p -e "SHOW DATABASES;"
-Enter password:
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| mysql              |
-| performance_schema |
-| toto_db            |
-+--------------------+
 
-
-*************************************
-
-
-
-[ansible_user@vm2 ~]$ mysql -u root -p -e "SELECT User FROM mysql.user;"
-Enter password:
-+-------------+
-| User        |
-+-------------+
-| mariadb.sys |
-| mysql       |
-| root        |
-| toto_dbuser |
-+-------------+
-
-*************************************
-
-
-[ansible_user@vm2 ~]$ mysql -u root -p -e "SHOW GRANTS FOR 'root'@'localhost';"
-Enter password:
-+----------------------------------------------------------------------------------------------------------------------------------------+
-| Grants for root@localhost
-                 |
-+----------------------------------------------------------------------------------------------------------------------------------------+
-| GRANT ALL PRIVILEGES ON *.* TO `root`@`localhost` IDENTIFIED BY PASSWORD '*81F5E21E35407D884A6CD4A731AEBFB6AF209E1B' WITH GRANT OPTION |
-| GRANT PROXY ON ''@'%' TO 'root'@'localhost' WITH GRANT OPTION
-                 |
-+----------------------------------------------------------------------------------------------------------------------------------------+
-
-
-*************************************
-
-
-[ansible_user@vm2 ~]$ mysql -u root -p -e "SHOW GRANTS FOR 'toto_dbuser'@'localhost';"
-Enter password:
-+--------------------------------------------------------------------------------------------------------------------+
-| Grants for toto_dbuser@localhost                                                                                   |
-+--------------------------------------------------------------------------------------------------------------------+
-| GRANT USAGE ON *.* TO `toto_dbuser`@`localhost` IDENTIFIED BY PASSWORD '*A354D961B346FE82928E8F042F7253F71BDA3DE3' |
-[ansible_user@vm2 ~]$
-+--------------------------------------------------------------------------------------------------------------------+
-`
+    [ansible_user@vm2 ~]$ mysql -u root -p -e "SHOW DATABASES;"
+    Enter password:
+    +--------------------+
+    | Database           |
+    +--------------------+
+    | information_schema |
+    | mysql              |
+    | performance_schema |
+    | toto_db            |
+    +--------------------+
+    
+    
+    *************************************
+    
+    
+    
+    [ansible_user@vm2 ~]$ mysql -u root -p -e "SELECT User FROM mysql.user;"
+    Enter password:
+    +-------------+
+    | User        |
+    +-------------+
+    | mariadb.sys |
+    | mysql       |
+    | root        |
+    | toto_dbuser |
+    +-------------+
+    
+    *************************************
+    
+    
+    [ansible_user@vm2 ~]$ mysql -u root -p -e "SHOW GRANTS FOR 'root'@'localhost';"
+    Enter password:
+    +----------------------------------------------------------------------------------------------------------------------------------------+
+    | Grants for root@localhost
+                     |
+    +----------------------------------------------------------------------------------------------------------------------------------------+
+    | GRANT ALL PRIVILEGES ON *.* TO `root`@`localhost` IDENTIFIED BY PASSWORD '*81F5E21E35407D884A6CD4A731AEBFB6AF209E1B' WITH GRANT OPTION |
+    | GRANT PROXY ON ''@'%' TO 'root'@'localhost' WITH GRANT OPTION
+                     |
+    +----------------------------------------------------------------------------------------------------------------------------------------+
+    
+    
+    *************************************
+    
+    
+    [ansible_user@vm2 ~]$ mysql -u root -p -e "SHOW GRANTS FOR 'toto_dbuser'@'localhost';"
+    Enter password:
+    +--------------------------------------------------------------------------------------------------------------------+
+    | Grants for toto_dbuser@localhost                                                                                   |
+    +--------------------------------------------------------------------------------------------------------------------+
+    | GRANT USAGE ON *.* TO `toto_dbuser`@`localhost` IDENTIFIED BY PASSWORD '*A354D961B346FE82928E8F042F7253F71BDA3DE3' |
+    [ansible_user@vm2 ~]$
+    +--------------------------------------------------------------------------------------------------------------------+
