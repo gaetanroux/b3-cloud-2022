@@ -1,0 +1,73 @@
+---
+# Déployer un serveur NGINX
+- name: Déployer un serveur NGINX
+- hosts: web
+  become: true
+
+  tasks:
+    # Installation de NGINX
+  - name: Installation de NGINX
+    dnf:
+       name: nginx
+       state: present
+        
+        
+    # Créer le dossier /var/www/server pour le site web
+  - name: Créer le dossier /var/www/server pour le site web
+    file:
+      path: /var/www/server
+      state: directory
+      owner: nginx
+      group: nginx
+      mode: '0755'
+      
+    # Create index.html file
+  - name: Create index.html file
+    template:
+      src: ../files/index.html.j2
+      dest: /var/www/server/index.html
+    
+    
+    # Copier le certificat que l'on a généré dans /etc/pki/tls/certs
+  - name: Copier le certificat que l'on a généré dans /etc/pki/tls/certs
+    copy:
+      src: ../files/certificats/server.crt
+      dest: /etc/pki/tls/certs/server.crt
+      mode: '0644'
+   
+
+    # Copier le certificat que l'on a généré dans /etc/pki/tls/certs
+  - name: Copier la clé que l'on a généré dans /etc/pki/tls/private
+    copy:
+      src: ../files/certificats/server.key
+      dest: /etc/pki/tls/private/server.key
+      mode: '0400'
+       
+       
+       
+    # Configurer NGINX pour HTTPS, en copiant notre fichier de conf nginx dans /etc/nginx/conf.d
+  - name: Configurer NGINX pour HTTPS, en copiant notre fichier de conf nginx dans /etc/nginx/conf.d
+    copy:
+      src: ../files/https.conf
+      dest: /etc/nginx/conf.d/https.conf
+
+
+    # Ouvre le port 443/TCP dans le firewall
+  - name: Ouvre le port 443 dans le firewall
+    firewalld:
+      rule: allow
+      port: 443/tcp
+      permanent: yes
+      state: enabled
+   
+    # Redémarer NGINX
+  - name: Redémmarer NGINX
+    service:
+      name: nginx
+      state: restarted
+    
+    # Redémarer Firewalld    
+  - name: Redémmarer Firewalld
+    service:
+      name: firewalld
+      state: restarted
