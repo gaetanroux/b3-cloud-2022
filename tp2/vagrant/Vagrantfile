@@ -1,0 +1,39 @@
+Vagrant.configure("2") do |config|
+
+# Configuration de la première machine
+  config.vm.define "node1.tp2.cloud" do |node1|
+    node1.vm.box = "generic/rocky9"
+    node1.vm.hostname = "node1.tp2.cloud"
+    node1.vm.provider "virtualbox" do |vb|
+      node1.vm.network "private_network", ip: "10.1.1.11"
+      vb.memory = "1024"
+      vb.gui = true
+    end
+    node1.vm.provision "shell", path: "setup.sh"
+  end
+
+# Configuration de la deuxième machine
+  config.vm.define "node2.tp2.cloud" do |node2|
+    node2.vm.box = "generic/rocky9"
+    node2.vm.hostname = "node2.tp2.cloud"
+    node2.vm.provider "virtualbox" do |vb|
+      node2.vm.network "private_network", ip: "10.1.1.12"
+      vb.memory = "1024"
+      vb.gui = true
+    end
+    node2.vm.provision "shell", path: "setup.sh"
+  end
+# Configuration de la troisème machine
+  config.vm.define "node3.tp2.cloud" do |node3|
+    node3.vm.box = "generic/rocky9"
+    node3.vm.hostname = "node3.tp2.cloud"
+    node3.vm.provider "virtualbox" do |vb|
+      node3.vm.network "private_network", ip: "10.1.1.13"
+      vb.memory = "1024"
+      vb.gui = true
+  end
+  node3.vm.provision "shell", path: "setup.sh"
+end
+  config.vm.box_check_update = false 
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+end

@@ -1,0 +1,11 @@
+vhosts:
+  - webapp1:
+    nginx_servername: webapp1
+    nginx_port: 8081
+    nginx_webroot: /var/www/html/webapp1
+    nginx_index_content: "<h1>Cette page est hébergée sur un serveur Nginx configuré avec Ansible.1</h1>"
+  - webapp2:
+    nginx_servername: webapp2
+    nginx_port: 8082
+    nginx_webroot: /var/www/html/webapp2
+    nginx_index_content: "<h1>Cette page est hébergée sur un serveur Nginx configuré avec Ansible.2</h1>"

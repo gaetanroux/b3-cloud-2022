@@ -1,0 +1,10 @@
+---
+- name: Install vim
+  hosts: rproxy,webapp
+  become: true
+
+  tasks:
+    - name: Install vim
+      dnf:
+        name: vim
+        state: present

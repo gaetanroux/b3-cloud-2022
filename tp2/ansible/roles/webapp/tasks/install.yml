@@ -1,0 +1,5 @@
+# Installation de NGINX
+- name: Installation de NGINX
+  dnf:
+    name: nginx
+    state: present

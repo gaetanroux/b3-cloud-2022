@@ -1,0 +1,10 @@
+- name: Ouvrir le port 8082 via firewalld
+  firewalld:
+    port: 8082/tcp
+    permanent: yes
+    state: enabled
+- name: Ouvrir le port 8083 via firewalld
+  firewalld:
+    port: 8083/tcp
+    permanent: yes
+    state: enabled

@@ -1,0 +1,6 @@
+- name: Activer le site web Nginx
+  file:
+    src: /etc/nginx/nginx.conf
+    dest: /etc/nginx/nginx.conf
+    state: link
+  notify: restart nginx

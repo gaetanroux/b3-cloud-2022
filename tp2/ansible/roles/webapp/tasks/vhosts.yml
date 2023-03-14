@@ -1,0 +1,15 @@
+- name: Create webroot
+  file:
+    path: "{{ nginx_webroot }}"
+    state: directory
+
+- name: Create index
+  copy:
+    dest: "{{ nginx_webroot }}/index.html"
+    content: "{{ nginx_index_content }}"
+    mode: "0644"
+- name: NGINX Virtual Host
+  template:
+    src: webapp.conf.j2
+    dest: /etc/nginx/conf.d/{{ nginx_servername }}.conf
+    mode: "0644"

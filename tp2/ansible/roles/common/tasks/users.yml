@@ -1,0 +1,24 @@
+# Install Users
+- name: Install Users
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    state: present
+    password: "{{ item.password }}"
+    state: present
+    home: "{{ item.home }}"
+    state: present
+    shell: "{{ item.shell }}"
+    state: present
+  with_items: "{{ users }}" # ceci permet de boucler sur la liste users
+
+# Ajouter la clé SSH
+- name: Ajouter la clé SSH
+  lineinfile:
+    path: "/home/{{ item.name }}/.ssh/authorized_keys"
+    line: "{{ item.ssh_public_key }}"
+    state: present
+    create: true
+    mode: '0600'
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+  with_items: "{{ users }}"
