@@ -1,3 +1,7 @@
+common_packages:
+  - vim
+  - git
+  - rsync
 vhosts:
   - webapp1:
     nginx_servername: webapp1

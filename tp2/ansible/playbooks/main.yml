@@ -1,9 +1,11 @@
 - hosts: all
   roles:
     - common
+  become: true
 - hosts: rproxy
   roles:
     - nginx
+  become: true
 - hosts: webapp
   roles:
     - webapp

@@ -1,6 +1,5 @@
----
 - name: Install vim
-  hosts: rproxy,webapp
+  hosts: webapp
   become: true
 
   tasks:

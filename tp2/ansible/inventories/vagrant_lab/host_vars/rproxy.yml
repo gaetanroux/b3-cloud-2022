@@ -1,4 +1,4 @@
-# common_packages:
-#  - vim
-#  - git
-#  - rsync
+common_packages:
+  - vim
+  - git
+  - rsync
