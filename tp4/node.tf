@@ -115,9 +115,9 @@ resource "azurerm_linux_virtual_machine" "vm-node2" {
   }
 
   source_image_reference {
-    publisher = "procomputers"
-    offer     = "rocky-linux-9-1"
-    sku       = "rocky-linux-9-1"
+    publisher = "Debian"
+    offer     = "debian-10"
+    sku       = "10"
     version   = "latest"
   }
 }
